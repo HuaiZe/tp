@@ -26,7 +26,6 @@ import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -51,7 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_BIRTHDATE + "1995-05-01";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -113,9 +112,7 @@ public class EditCommand extends Command {
                 updatedBirthdate, updatedTags);
         editedPerson = editedPerson.setMeeting(personToEdit.getMeeting());
         editedPerson = editedPerson.setPlans(personToEdit.getPlans());
-        for (Note n : personToEdit.getNotes()) {
-            editedPerson.addNote(n);
-        }
+        editedPerson = editedPerson.setNotes(personToEdit.getNotes());
 
         return editedPerson;
     }
